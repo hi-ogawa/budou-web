@@ -1,14 +1,11 @@
 import tarfile
+import tempfile
 import os.path
 
 # we bundle only compressed tar.gz (~50MB) since decompressed installation of unidic-lite (~250MB) won't pass vercel/lambda limit
 
-SRC_PATH = "data/unidic-lite-1.0.8.tar.gz"
-DST_PATH = "data/unidic-lite-1.0.8"
-
-
-def prepare() -> None:
-    get_mecab_args()
+SRC_PATH = "unidic-lite-1.0.8.tar.gz"
+DST_PATH = tempfile.gettempdir() + "/unidic-lite-1.0.8"
 
 
 def get_mecab_args() -> str:
