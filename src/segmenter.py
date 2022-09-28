@@ -1,3 +1,4 @@
+from dataclasses import dataclass
 from typing import NamedTuple, Optional, List
 import unicodedata
 
@@ -22,7 +23,8 @@ def is_punctuation_close(token: str) -> bool:
     return len(token) == 1 and unicodedata.category(token) in PUNCTUATION_CLOSE
 
 
-class TagItem(NamedTuple):
+@dataclass
+class TagItem:
     token: str
     pos: str
     label: Optional[str]
