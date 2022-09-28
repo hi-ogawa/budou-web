@@ -1,6 +1,7 @@
 from dataclasses import dataclass
-from typing import NamedTuple, Optional, List
+from typing import Optional, List
 import unicodedata
+from . import unidic_helper
 
 # The ideas is based on https://github.com/google/budou/blob/d45791a244e00d84f87da2a4678da2b63a9c232f/budou/mecabsegmenter.py#L95-L108
 
@@ -56,7 +57,8 @@ class Segmenter:
     def __init__(self):
         import MeCab
 
-        self.tagger = MeCab.Tagger("")
+        mecab_args = unidic_helper.get_mecab_args()
+        self.tagger = MeCab.Tagger(mecab_args)
 
     def run(self, source: str) -> List[str]:
         items = self.run_mecab(source)
