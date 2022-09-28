@@ -4,8 +4,7 @@ Segment Japanese sentence into chunks where line-break is appropriate.
 Inspired from [Budou](https://github.com/google/budou).
 
 ```sh
-# install dependency
-make pip
+make setup
 
 # test as cli
 echo "テクノロジーの力であらゆる投資判断を支援する" | python -m src.segmenter
