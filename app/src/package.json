@@ -1,0 +1,4 @@
+{
+  "//": "workaround for esbuild-register",
+  "module": "module"
+}

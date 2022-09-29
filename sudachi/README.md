@@ -2,7 +2,7 @@
 
 ```sh
 # build
-docker-compose run --rm -T bundler cat /app/dist.tar.gz > dist.tar.gz
+docker-compose run --rm -T bundler cat dist.tar.gz > dist.tar.gz
 
 # extract
 tar -xvzf dist.tar.gz

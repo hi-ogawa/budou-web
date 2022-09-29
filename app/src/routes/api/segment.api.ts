@@ -1,11 +1,12 @@
 import { json } from "@hattip/response";
 import type { RequestContext } from "rakkasjs";
+import * as sudachi from "../../utils/sudachi-helper";
 
-// https://github.com/expo/custom-expo-updates-server/blob/a20aa7b45698b2c5c43b994983e7252038eb0afd/expo-updates-server/pages/api/manifest.ts
-
-export async function get(ctx: RequestContext) {
-  ctx;
+export async function post(ctx: RequestContext) {
+  await sudachi.setup();
+  const source = await ctx.request.text();
+  const result = await sudachi.run(source);
   return json({
-    message: "hello world",
+    result,
   });
 }
