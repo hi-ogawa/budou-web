@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from typing import Optional, List
+from typing import List
 import unicodedata
 from . import unidic_helper
 
@@ -8,8 +8,6 @@ from . import unidic_helper
 DEPENDENT_POS_FORWARD = ["接頭辞", "連体詞"]
 DEPENDENT_POS_BACKWARD = ["助詞", "助動詞", "接尾辞"]
 DEPENDENT_POS_PAIRS = [["名詞", "名詞"]]
-DEPENDENT_LABEL_FORWARD = []
-DEPENDENT_LABEL_BACKWARD = ["非自立"]
 
 # https://en.wikipedia.org/wiki/Unicode_character_property
 PUNCTUATION_OPEN = ["Ps", "Pi"]
@@ -28,21 +26,12 @@ def is_punctuation_close(token: str) -> bool:
 class TagItem:
     token: str
     pos: str
-    label: Optional[str]
 
     def is_dependent_forward(self) -> bool:
-        return (
-            is_punctuation_open(self.token)
-            or self.pos in DEPENDENT_POS_FORWARD
-            or self.label in DEPENDENT_LABEL_FORWARD
-        )
+        return is_punctuation_open(self.token) or self.pos in DEPENDENT_POS_FORWARD
 
     def is_dependent_backward(self) -> bool:
-        return (
-            is_punctuation_close(self.token)
-            or self.pos in DEPENDENT_POS_BACKWARD
-            or self.label in DEPENDENT_LABEL_BACKWARD
-        )
+        return is_punctuation_close(self.token) or self.pos in DEPENDENT_POS_BACKWARD
 
 
 def is_dependent(prev: TagItem, curr: TagItem) -> bool:
@@ -80,9 +69,9 @@ class Segmenter:
             data = mecab_item.split("\t")
             token = data[0]
             labels = data[4].split("-")
+            assert len(labels) > 0
             pos = labels[0]
-            label = labels[1] if len(labels) >= 2 else None
-            items.append(TagItem(token, pos, label))
+            items.append(TagItem(token, pos))
         return items
 
 

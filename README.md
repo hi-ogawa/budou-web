@@ -44,3 +44,9 @@ curl http://127.0.0.1:5000/segment --data-binary 'テクノロジーの力であ
 make deploy/production
 curl https://mecab-hiro18181.vercel.app/segment --data-binary 'テクノロジーの力であらゆる投資判断を支援する'
 ```
+
+## todo
+
+- [ ] frontend for demo
+- [ ] use sudaschi (splitting mode C)
+  - https://github.com/WorksApplications/sudachi.rs
