@@ -1,0 +1,33 @@
+{
+  "name": "jp-sentence-segmenter",
+  "type": "module",
+  "scripts": {
+    "dev": "npm run rakkas:dev",
+    "build": "npm run rakkas:build:vercel",
+    "deploy": "npm run rakkas:build:vercel && vercel deploy --prebuilt . --prod",
+    "rakkas:dev": "rakkas --no-clearScreen --port 3333",
+    "rakkas:build": "rakkas build",
+    "rakkas:build:vercel": "CONFIG_RAKKAS_ADAPTER=vercel npm run rakkas:build",
+    "lint": "run-s prettier",
+    "lint:check": "run-s prettier:check",
+    "prettier": "prettier --cache -w .",
+    "prettier:check": "prettier --cache -c ."
+  },
+  "dependencies": {
+    "@hattip/response": "^0.0.17",
+    "rakkasjs": "^0.6.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "zod": "^3.19.1"
+  },
+  "devDependencies": {
+    "@tsconfig/strictest": "^1.0.2",
+    "@types/node": "^16",
+    "esbuild": "^0.15.9",
+    "esbuild-register": "^3.3.3",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.7.1",
+    "vite": "^3.1.3",
+    "vite-plugin-windicss": "^1.8.8"
+  }
+}
