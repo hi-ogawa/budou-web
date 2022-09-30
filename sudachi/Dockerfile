@@ -13,4 +13,6 @@ RUN unzip sudachi-dictionary-20220519-small.zip && \
 
 RUN mkdir dist
 RUN cp -r resources target/x86_64-unknown-linux-musl/release/sudachi dist
-RUN tar -czvf dist.tar.gz dist
+
+COPY ./sudachi-wrapper.sh dist
+RUN sudo chmod +x dist/sudachi-wrapper.sh

@@ -2,13 +2,13 @@
 
 ```sh
 # build
-docker-compose run --rm -T bundler cat dist.tar.gz > dist.tar.gz
+docker-compose run --rm -T bundler tar -czvf - dist > dist.tar.gz
 
 # extract
 tar -xvzf dist.tar.gz
 
 # run
-echo "テクノロジーの力であらゆる投資判断を支援する" | ./dist/sudachi -p dist/resources -r dist/resources/sudachi.json -l dist/resources/system.dic
+echo "テクノロジーの力であらゆる投資判断を支援する" | ./dist/sudachi-wrapper.sh
 テクノロジー    名詞,普通名詞,一般,*,*,*        テクノロジー
 の      助詞,格助詞,*,*,*,*     の
 力      名詞,普通名詞,一般,*,*,*        力
